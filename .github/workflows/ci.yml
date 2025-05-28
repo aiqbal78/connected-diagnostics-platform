@@ -13,12 +13,12 @@ jobs:
 
       - name: Build DTC Service
         run: mvn -B clean install -DskipTests
-        working-directory: dtc-service
+        working-directory: cd dtc-service
 
       - name: Build Notification Service
         run: mvn -B clean install -DskipTests
-        working-directory: notification-service
+        working-directory: cd notification-service
 
       - name: Build Vehicle Health Service
         run: mvn -B clean install -DskipTests
-        working-directory: vehicle-health-service
+        working-directory: cd vehicle-health-service
