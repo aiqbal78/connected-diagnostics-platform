@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # List all your Maven-based services here
         service: ['dtc-service', 'notification-service', 'vehicle-health-service']
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,16 +22,15 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'maven'  # Auto-configures Maven caching
+          cache: 'maven'
 
       - name: Build and Test ${{ matrix.service }}
         run: |
           cd ${{ matrix.service }}
-          mvn -B verify --file pom.xml  # Explicit POM file reference
+          mvn -B verify --file pom.xml
 
-      # Optional: Add test reports
       - name: Upload Test Results
-        if: always()  # Runs even if tests fail
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: test-results-${{ matrix.service }}
